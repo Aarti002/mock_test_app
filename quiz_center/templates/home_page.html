@@ -1,0 +1,738 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>WebUni - Education Template</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="WebUni Education Template">
+	<meta name="keywords" content="webuni, education, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->
+	<link href='{% static "img/favicon.ico" %}' rel="shortcut icon"/>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}'/>
+	<link rel="stylesheet" href='{% static "css/font-awesome.min.css" %}'/>
+	<link rel="stylesheet" href='{% static "css/owl.carousel.css" %}'/>
+	<link rel="stylesheet" href='{% static "css/style.css" %}'/>
+
+
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+<style>
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#status {
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+#status.success {
+  background-color: rgb(211, 250, 153);
+  animation: status 4s ease forwards;
+}
+#status.error {
+  background-color: rgb(250, 129, 92);
+  color: white;
+  animation: status 4s ease forwards;
+}
+@keyframes status {
+  0% {
+    opacity: 1;
+    pointer-events: all;
+  }
+  90% {
+    opacity: 1;
+    pointer-events: all;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+
+.background {
+  display: flex;
+  min-height: 100vh;
+}
+
+.container {
+  flex: 0 1 700px;
+  margin: auto;
+  padding: 10px;
+
+}
+
+.screen {
+  position: relative;
+  background: #3e3e3e;
+  border-radius: 15px;
+}
+
+.screen:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  bottom: 0;
+  border-radius: 15px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .4);
+  z-index: -1;
+}
+
+.screen-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: #4d4d4f;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.screen-header-left {
+  margin-right: auto;
+}
+
+.screen-header-button {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 3px;
+  border-radius: 8px;
+  background: white;
+}
+
+.screen-header-button.close {
+  background: #ed1c6f;
+}
+
+.screen-header-button.maximize {
+  background: #e8e925;
+}
+
+.screen-header-button.minimize {
+  background: #74c54f;
+}
+
+.screen-header-right {
+  display: flex;
+}
+
+.screen-header-ellipsis {
+  width: 3px;
+  height: 3px;
+  margin-left: 2px;
+  border-radius: 8px;
+  background: #999;
+}
+
+.screen-body {
+  display: flex;
+}
+
+.screen-body-item {
+  flex: 1;
+  padding: 50px;
+}
+
+.screen-body-item.left {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-title {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: #ea1d6f;
+  font-size: 26px;
+}
+
+.app-title:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 25px;
+  height: 4px;
+  background: #ea1d6f;
+}
+
+.app-contact {
+  margin-top: auto;
+  font-size: 8px;
+  color: #888;
+}
+
+.app-form-group {
+  margin-bottom: 15px;
+}
+
+.app-form-group.message {
+  margin-top: 40px;
+}
+
+.app-form-group.buttons {
+  margin-bottom: 0;
+  text-align: right;
+}
+
+.app-form-control {
+  width: 100%;
+  padding: 10px 0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #666;
+  color: #ddd;
+  font-size: 14px;
+  text-transform: uppercase;
+  outline: none;
+  transition: border-color .2s;
+}
+
+.app-form-control::placeholder {
+  color: #666;
+}
+
+.app-form-control:focus {
+  border-bottom-color: #ddd;
+}
+
+.app-form-button {
+  background: none;
+  border: none;
+  color: #ea1d6f;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.app-form-button:hover {
+  color: #b9134f;
+}
+
+.credits {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  color: #ffa4bd;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.credits-link {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.dribbble {
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+}
+
+@media screen and (max-width: 520px) {
+  .screen-body {
+    flex-direction: column;
+  }
+
+  .screen-body-item.left {
+    margin-bottom: 30px;
+  }
+
+  .app-title {
+    flex-direction: row;
+  }
+
+  .app-title span {
+    margin-right: 12px;
+  }
+
+  .app-title:after {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .screen-body {
+    padding: 40px;
+  }
+
+  .screen-body-item {
+    padding: 0;
+  }
+}
+
+
+
+
+
+	.v-header{
+  height: 100vh;
+  align-items: center;
+  color: antiquewhite;
+}
+
+.container{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 960px;
+  margin: auto;
+
+}
+
+.vedio-background{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  overflow:hidden;
+}
+
+.vedio-background video{
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.vedio-overlay{
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #FFCCD2;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.header-content{
+  position: relative;
+  height: 100vh;
+  top: 50%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: #e4e8f0;
+  z-index: 2;
+}
+
+#navbar {
+  overflow: hidden;
+  background-color: #d82a4e;
+z-index:1;
+}
+
+/* Navbar links */
+#navbar a {
+  float: left;
+  font-size:1.2rem;
+  font-weight:700;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+#navbar a:hover{
+transition:1.2s;
+color:black;
+
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
+
+.topnav-right {
+  float: right;
+
+  animation: animate 2.2s infinite;
+}
+@keyframes animate {
+  from {background-color: red;}
+  to {background-color: yellow;}
+}
+
+		.col-md-3
+         {
+         display: inline-block;
+         margin:2rem 2.2rem;
+         }
+		.card-body{
+		width:18rem;
+		}
+		.card-body h4{
+		float:right;
+		}
+         .carousel-indicators .active {
+         background-color: blue;
+           }
+
+         body .carousel-control-prev-icon,
+         body .carousel-control-next-icon{
+         background-color: grey;
+
+         }
+
+         .carousel-control-prev,
+         .carousel-control-next{
+         	top: 160rem;
+		bottom: auto;
+         }
+          body .no-padding{
+          padding-left: 0,
+          padding-right: 0;
+          }
+
+.card:hover{
+transition:.2s;
+box-shadow:3px 3px 5px #E8E1D9;
+
+}
+
+.card .card-title{
+float:left;
+text-transform:capitalize;
+}
+
+.card .card-title:hover{
+transition:2s;
+text-decoration:underline;
+}
+
+.card .card-text{
+float:right;
+text-transform:capitalize;
+}
+
+
+</style>
+
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader">
+		</div>
+	</div>
+
+	<!-- Header section -->
+	<header class="v-header container" id="home">
+
+
+
+        <div class="vedio-background">
+
+        <video class='videoTag' autoPlay loop muted>
+            <source src='{% static "img/bg_vd1.mp4" %}' type='video/mp4' />
+        </video>
+        </div>
+
+        <div class="vedio-overlay"></div>
+
+		<div class="header-content">
+			<h3 style="color:white; font-weight:700; letter-spacing:2rem;">WELCOME </h3><h3 style="color:#F8485E">Achievers!</h3>
+            <p style="padding:2rem 2.2rem; font-size:1.2rem;">Let's fight together...</p>
+		</div>
+
+    </header>
+	<!-- Header section end -->
+	<nav>
+		<div id="navbar">
+		  	<a href="#home">Welcome</a>
+		  	<a href="#news">Our Story</a>
+			<a href="#story">Success Story</a>
+		  	<a href="#contact" style="cursor:pointer;">Contact</a>
+			<div class="topnav-right">
+				<a href="/login_page">Login Now</a>
+		  	</div>
+		</div>
+	</nav>
+
+	<div id="news">
+	<section class="container" >
+		<h2 style="color:#d82a4e; font-weight:700; letter-spacing: .2rem; margin-top:3rem; margin-bottom:2rem;">Our Story</h2>
+		<p>
+			Market research will tell you if there’s an opportunity to turn your idea into a successful business. It’s a way to gather information
+			about potential customers and businesses already operating in your area. Use that information to find a competitive advantage for
+			your business.
+			Your business plan is the foundation of your business. It’s a roadmap for how to structure, run, and grow your new business.
+			You’ll use it to convince people that working with you — or investing in your company — is a smart choice.
+			Your business plan will help you figure out how much money you’ll need to start your business. If you don’t have that amount on hand,
+			you’ll need to either raise or borrow the capital. Fortunately, there are more ways than ever to find the capital you need.
+			Your business location is one of the most important decisions you’ll make. Whether you’re setting up a brick-and-mortar business
+			or launching an online store, the choices you make could affect your taxes, legal requirements, and revenue.
+		</p>
+	</section>
+	</div>
+
+
+	<section class="categories-section spad">
+		<div class="" id="story" >
+			<div class="section-title" style="margin-top:3rem;">
+				<h2>What they say...</h2>
+				<p>Give it a try, and find your preparation level!</p>
+			</div>
+				{% for feedback, range, nSlides in allset %}
+					<div class="carousel slide my-3" data-ride="carousel">
+						<div class="carousel-inner">
+							<div class="carousel-item active"  >
+
+
+								{% for i in feedback %}
+								<div class="col-xs-3 col-sm-3 col-md-3" style="margin-left:5rem;" >
+								  <div class="card" style="width:25rem; height:22rem; " >
+									<img src='{% static "img/categories/1.jpg" %}' >
+									<div class="card-body" style="background-color:white; ">
+
+									  <h6 class="card-title">{{i.feedback}}</h6><br>
+									  <p class="card-text">{{i.feedback_reply}}</p>
+									</div>
+								  </div>
+								</div>
+
+								{% if forloop.counter|divisibleby:3 and forloop.counter > 0 and not forloop.last %}
+								 </div>
+							  <div class="carousel-item">
+								{% endif%}
+								{% endfor %}
+							  </div>
+			  			</div>
+					</div>
+
+    		{% endfor %}
+
+		</div>
+	</section>
+
+	<h2 style="margin-left:35%; letter-spacing:.1rem; margin-bottom:-2rem;">LET US KNOW YOUR QUERY</h2>
+	<section class="categories-section spad" style="margin-top:-15rem;">
+
+		<div class="background" id="contact" >
+		  <div class="container">
+			<div class="screen">
+			  <div class="screen-header">
+				<div class="screen-header-left">
+				  <div class="screen-header-button close"></div>
+				  <div class="screen-header-button maximize"></div>
+				  <div class="screen-header-button minimize"></div>
+				</div>
+				<div class="screen-header-right">
+				  <div class="screen-header-ellipsis"></div>
+				  <div class="screen-header-ellipsis"></div>
+				  <div class="screen-header-ellipsis"></div>
+				</div>
+			  </div>
+			  <div class="screen-body">
+				<div class="screen-body-item left">
+				  <div class="app-title">
+					<span>CONTACT</span>
+					<span>US</span>
+				  </div>
+				  <div class="app-contact">CONTACT INFO : +62 81 314 928 595</div>
+				</div>
+				  <div class="screen-body-item">
+				  <form action="https://formspree.io/f/meqvbkkp" method="POST" enctype="multipart/form-data" id="my-form">
+					{% csrf_token %}
+					  <div class="app-form">
+						<div class="app-form-group">
+						  <input class="app-form-control" placeholder="NAME" name="full_name">
+						</div>
+						<div class="app-form-group">
+						  <input class="app-form-control" placeholder="EMAIL" name="full_email">
+						</div>
+						<div class="app-form-group">
+						  <input class="app-form-control" placeholder="CONTACT NO" name="contact_no">
+						</div>
+						  <div class="app-form-group message">
+						  <input class="app-form-control" placeholder="SUBJECT" name="subject">
+						</div>
+						<div class="app-form-group message">
+						  <input class="app-form-control" placeholder="MESSAGE" name="message">
+						</div>
+						<div class="app-form-group buttons">
+						  <button class="app-form-button" type="submit">SEND</button>
+						</div>
+					  </div>
+					<div id="status"></div>
+				  </form>
+					  </div>
+			  </div>
+			</div>
+			<div class="credits">
+			  inspired by
+			  <a class="credits-link" href="https://dribbble.com/shots/2666271-Contact" target="_blank">
+				<svg class="dribbble" viewBox="0 0 200 200">
+				  <g stroke="#ffffff" fill="none">
+					<circle cx="100" cy="100" r="90" stroke-width="20"></circle>
+					<path d="M62.737004,13.7923523 C105.08055,51.0454853 135.018754,126.906957 141.768278,182.963345" stroke-width="20"></path>
+					<path d="M10.3787186,87.7261455 C41.7092324,90.9577894 125.850356,86.5317271 163.474536,38.7920951" stroke-width="20"></path>
+					<path d="M41.3611549,163.928627 C62.9207607,117.659048 137.020642,86.7137169 189.041451,107.858103" stroke-width="20"></path>
+				  </g>
+				</svg>
+				Aarti
+			  </a>
+			</div>
+		  </div>
+		</div>
+	</section>
+
+
+	<!-- footer section -->
+	<footer class="footer-section spad pb-0">
+		<div class="footer-top">
+			<div class="footer-warp">
+				<div class="row">
+					<div class="widget-item">
+						<h4>Contact Info</h4>
+						<ul class="contact-list">
+							<li>Goregaon West <br>Avila Beach, 480090</li>
+							<li>+91 1223334444</li>
+							<li>aartikumat120@gmail.com</li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Engineering Section</h4>
+						<ul>
+							<li><a href="">Computer Engeneering</a></li>
+							<li><a href="">Software Engeneering</a></li>
+							<li><a href="">Informational Engeneering</a></li>
+							<li><a href="">System Engeneering</a></li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Medical</h4>
+						<ul>
+							<li><a href="">MBBS</a></li>
+							<li><a href="">NEET-UG</a></li>
+							<li><a href="">Nursing</a></li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>General</h4>
+						<ul>
+							<li><a href="">UPSE</a></li>
+							<li><a href="">JEE-Mains</a></li>
+							<li><a href="">Prelims</a></li>
+						</ul>
+					</div>
+
+					<div class="widget-item">
+						<h4>Newsletter</h4>
+						<form class="footer-newslatter">
+							<input type="email" placeholder="E-mail">
+							<button class="site-btn">Subscribe</button>
+							<p>*We don’t spam</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="footer-warp">
+				<ul class="footer-menu">
+					<li><a href="#">Terms & Conditions</a></li>
+					<li><a href="#">Register</a></li>
+					<li><a href="#">Privacy</a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+	<!-- footer section end -->
+</body>
+
+	<!--====== Javascripts & Jquery ======-->
+<script>
+	window.addEventListener("DOMContentLoaded", function () {
+  // get the form elements defined in your form HTML above
+
+  var form = document.getElementById("my-form");
+  // var button = document.getElementById("my-form-button");
+  var status = document.getElementById("status");
+
+  // Success and Error functions for after the form is submitted
+
+  function success() {
+    form.reset();
+    status.classList.add("success");
+    status.innerHTML = "Thanks!";
+  }
+
+  function error() {
+    status.classList.add("error");
+    status.innerHTML = "Oops! There was a problem.";
+  }
+
+  // handle the form submission event
+
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var data = new FormData(form);
+    ajax(form.method, form.action, data, success, error);
+  });
+});
+
+// helper function for sending an AJAX request
+
+function ajax(method, url, data, success, error) {
+  var xhr = new XMLHttpRequest();
+  xhr.open(method, url);
+  xhr.setRequestHeader("Accept", "application/json");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState !== XMLHttpRequest.DONE) return;
+    if (xhr.status === 200) {
+      success(xhr.response, xhr.responseType);
+    } else {
+      error(xhr.status, xhr.response, xhr.responseType);
+    }
+  };
+  xhr.send(data);
+}
+
+</script>
+	<script src='{% static "js/scripts.js" %}'></script>
+	<script src='{% static "js/jquery-3.2.1.min.js" %}'></script>
+	<script src='{% static "js/bootstrap.min.js" %}'></script>
+	<script src='{% static "js/mixitup.min.js" %}'></script>
+	<script src='{% static "js/circle-progress.min.js" %}'></script>
+	<script src='{% static "js/owl.carousel.min.js" %}'></script>
+	<script src='{% static "js/main.js" %}'></script>
+</html>
