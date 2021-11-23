@@ -51,7 +51,6 @@ class Participants(models.Model):
     id=models.AutoField(primary_key=True)
     admin=models.OneToOneField(CustomUser,on_delete=models.CASCADE,default="")
     competition_id = models.ForeignKey(CompetitionType, on_delete=models.DO_NOTHING)
-    person_image=models.ImageField(upload_to="Images/",default="")
     gender=models.CharField(max_length=255,default="")
     address=models.TextField()
     result=models.IntegerField(default=0)
