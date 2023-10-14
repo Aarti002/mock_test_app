@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MockMeUp</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="WebUni Education Template" />
+    <meta name="keywords" content="webuni, education, creative, html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='{% static "img/favicon.ico" %}' rel="shortcut icon" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}' />
+    <link rel="stylesheet" href='{% static "css/font-awesome.min.css" %}' />
+    <link rel="stylesheet" href='{% static "css/owl.carousel.css" %}' />
+    <link rel="stylesheet" href='{% static "css/style.css" %}' />
+  </head>
+  <body>
+    <div id="preloder">
+      <div class="loader"></div>
+    </div>
+    <header class="header-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2 col-md-2">
+            <div class="site-logo">
+              <img
+                src='{% static "img/mockmeup_logo.png" %}'
+                alt=""
+                style="height: 15vh; width: 15vw"
+              />
+            </div>
+
+            <div class="nav-switch">
+              <i class="fa fa-bars"></i>
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-5">
+            <nav class="main-menu">
+              <ul>
+                <li><a href="/staff_page">Home</a></li>
+                <li><a href="/logout_page">Logout</a></li>
+                <li>
+                  <a href="/mock_test_list">View Available Competition</a>
+                </li>
+                <li><a href="/add_competition">Add Competition Type</a></li>
+                <li>
+                  <a href="/manage_participant">View Available Candidate</a>
+                </li>
+                <li><a href="/view_feedback">View Feedback</a></li>
+                <li><a href="/add_question">Add Question</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section
+      class="hero-section set-bg"
+      data-setbg='{% static "img/bg.jpg" %}'
+      style="height: 40vh"
+    >
+      <div class="container"></div>
+    </section>
+
+    <section class="contact-page spad">
+      <div class="container">
+        <div class="section-title">
+          <h2
+            style="
+              color: #d82a4e;
+              font-weight: 700;
+              letter-spacing: 0.2rem;
+              margin-top: 1.2rem;
+              margin-bottom: 1.2rem;
+            "
+          >
+            Add Competition-type
+          </h2>
+          <p>"Compete to Excel, Excel to Compete"</p>
+        </div>
+
+        <div class="contact-form-warp" style="background-color: #d82a4e">
+          <div class="section-title text-white text-left">
+            <div class="card-body">
+              <br />
+              <form
+                role="form"
+                action="/save_competition"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                {% csrf_token %}
+
+                <div class="form-group">
+                  <b>Admin Email: </b>
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    name="admin_detail"
+                  />
+                  {{ admin_detail.email }}
+                </div>
+
+                <div class="form-group">
+                  <label>Competition Name: </label><br />
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Exam Name"
+                    name="exam_name"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>Short description about competition: </label>
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    placeholder="About"
+                    name="about"
+                    rows="3"
+                    cols="4"
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  {% if messages %} 
+                  {% for message in messages %} 
+                  {% if message.tags == 'error' %}
+                  <div class="alert alert-danger" style="margin-top: 10px">
+                    {{ message }}
+                  </div>
+                  {% endif %}
+                  {% if message.tags == 'success' %}
+                  <div class="alert alert-success" style="margin-top: 10px">
+                    {{ message }}
+                  </div>
+                  {% endif %} 
+                  {% endfor %} 
+                  {% endif %}
+                </div>
+                <button type="submit" class="btn btn-primary">Add Type</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src='{% static "js/jquery-3.2.1.min.js" %}'></script>
+    <script src='{% static "js/bootstrap.min.js" %}'></script>
+    <script src='{% static "js/mixitup.min.js" %}'></script>
+    <script src='{% static "js/circle-progress.min.js" %}'></script>
+    <script src='{% static "js/owl.carousel.min.js" %}'></script>
+    <script src='{% static "js/main.js" %}'></script>
+
+    <!-- load for map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWTIlluowDL-X4HbYQt3aDw_oi2JP0Krc&sensor=false"></script>
+    <script src='{% static "js/map.js" %}'></script>
+  </body>
+</html>
+<script></script>

@@ -1,0 +1,4 @@
+venv
+.idea
+/mock_test_app/migrations
+/mock_test_app/__pycache__

@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
-import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v&2$1)3wyvx9g%&p86&tsy#0v%@e9^#h^2zpfh=6mgs*t0=1=o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['https://issbaarfoddenge.herokuapp.com/']
+ALLOWED_HOSTS = ['https://issbaarfoddenge.herokuapp.com/',"127.0.0.1"]
 
 
 # Application definition
@@ -44,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'quiz_center',
+    'mock_test_app',
 ]
 
 MIDDLEWARE = [
@@ -63,7 +62,7 @@ ROOT_URLCONF = 'quiz_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['quiz_center/templates'],
+        'DIRS': ['mock_test_app/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,14 +83,14 @@ WSGI_APPLICATION = 'quiz_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        #'ENGINE': 'django.db.backends.mysql',
-        #'NAME' : 'quiz_app',
-        #'USER' : 'quiz_app',
-        #'PASSWORD' : 'quiz_app_password',
-        #'HOST' : 'localhost',
-        #'PORT' : '3306',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME' : 'mock_test_portal',
+        'USER' : 'root',
+        'PASSWORD' : 'root',
+        'HOST' : 'localhost',
+        'PORT' : '3306',
     }
 }
 
@@ -134,22 +133,21 @@ USE_TZ = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-AUTH_USER_MODEL = "quiz_center.CustomUser"
-AUTHENTICATION_BACKENDS=['quiz_center.EmailBackEnd.EmailBackEnd']
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+AUTH_USER_MODEL = "mock_test_app.CustomUser"
+AUTHENTICATION_BACKENDS=['mock_test_app.EmailBackEnd.EmailBackEnd']
 
 EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST="smtp.gmail.com"
-EMAIL_HOST_USER="aartikumarisingh120@gmail.com"
-EMAIL_HOST_PASSWORD="aart001$%"
+EMAIL_HOST_USER="aartikumarisingh3002@gmail.com"
+EMAIL_HOST_PASSWORD="yawp ezoz lgsb malx"
 EMAIL_PORT=587
-EMAIL_USER_TLS=True
-EMAIL_USER_SSL=False
+EMAIL_USE_TLS=True
 EMAIL_FILE_PATH=os.path.join(BASE_DIR,"sent_emails")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
 import dj_database_url
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)

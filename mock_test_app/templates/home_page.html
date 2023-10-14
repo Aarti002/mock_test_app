@@ -1,0 +1,681 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MockMeUp</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="WebUni Education Template" />
+    <meta name="keywords" content="webuni, education, creative, html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='{% static "img/favicon.ico" %}' rel="shortcut icon" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}' />
+    <link rel="stylesheet" href='{% static "css/font-awesome.min.css" %}' />
+    <link rel="stylesheet" href='{% static "css/owl.carousel.css" %}' />
+    <link rel="stylesheet" href='{% static "css/style.css" %}' />
+
+    <style>
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      #status {
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+        padding: 10px;
+        margin: 0 auto;
+        border-radius: 8px;
+      }
+
+      #status.success {
+        background-color: rgb(211, 250, 153);
+        animation: status 4s ease forwards;
+      }
+
+      #status.error {
+        background-color: rgb(250, 129, 92);
+        color: white;
+        animation: status 4s ease forwards;
+      }
+
+      @keyframes status {
+        0% {
+          opacity: 1;
+          pointer-events: all;
+        }
+        90% {
+          opacity: 1;
+          pointer-events: all;
+        }
+        100% {
+          opacity: 0;
+          pointer-events: none;
+        }
+      }
+
+      .background {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .container {
+        flex: 0 1 700px;
+        margin: auto;
+        padding: 10px;
+      }
+
+      .screen {
+        position: relative;
+        background: #3e3e3e;
+        border-radius: 15px;
+      }
+
+      .screen:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 20px;
+        right: 20px;
+        bottom: 0;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        z-index: -1;
+      }
+
+      .screen-header {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        background: #4d4d4f;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+      }
+
+      .screen-header-left {
+        margin-right: auto;
+      }
+
+      .screen-header-button {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin-right: 3px;
+        border-radius: 8px;
+        background: white;
+      }
+
+      .screen-header-button.close {
+        background: #ed1c6f;
+      }
+
+      .screen-header-button.maximize {
+        background: #e8e925;
+      }
+
+      .screen-header-button.minimize {
+        background: #74c54f;
+      }
+
+      .screen-header-right {
+        display: flex;
+      }
+
+      .screen-header-ellipsis {
+        width: 3px;
+        height: 3px;
+        margin-left: 2px;
+        border-radius: 8px;
+        background: #999;
+      }
+
+      .screen-body {
+        display: flex;
+      }
+
+      .screen-body-item {
+        flex: 1;
+        padding: 50px;
+      }
+
+      .screen-body-item.left {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .app-title {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        color: #ea1d6f;
+        font-size: 26px;
+      }
+
+      .app-title:after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 25px;
+        height: 4px;
+        background: #ea1d6f;
+      }
+
+      .app-contact {
+        margin-top: auto;
+        font-size: 8px;
+        color: #888;
+      }
+
+      .app-form-group {
+        margin-bottom: 15px;
+      }
+
+      .app-form-group.message {
+        margin-top: 40px;
+      }
+
+      .app-form-group.buttons {
+        margin-bottom: 0;
+        text-align: right;
+      }
+
+      .app-form-control {
+        width: 100%;
+        padding: 10px 0;
+        background: none;
+        border: none;
+        border-bottom: 1px solid #666;
+        color: #ddd;
+        font-size: 14px;
+        text-transform: uppercase;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+
+      .app-form-control::placeholder {
+        color: #666;
+      }
+
+      .app-form-control:focus {
+        border-bottom-color: #ddd;
+      }
+
+      .app-form-button {
+        background: none;
+        border: none;
+        color: #ea1d6f;
+        font-size: 14px;
+        cursor: pointer;
+        outline: none;
+      }
+
+      .app-form-button:hover {
+        color: #b9134f;
+      }
+
+      .credits {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        color: #ffa4bd;
+        font-family: "Roboto Condensed", sans-serif;
+        font-size: 16px;
+        font-weight: normal;
+      }
+
+      .credits-link {
+        display: flex;
+        align-items: center;
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .dribbble {
+        width: 20px;
+        height: 20px;
+        margin: 0 5px;
+      }
+
+      @media screen and (max-width: 520px) {
+        .screen-body {
+          flex-direction: column;
+        }
+
+        .screen-body-item.left {
+          margin-bottom: 30px;
+        }
+
+        .app-title {
+          flex-direction: row;
+        }
+
+        .app-title span {
+          margin-right: 12px;
+        }
+
+        .app-title:after {
+          display: none;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        .screen-body {
+          padding: 40px;
+        }
+
+        .screen-body-item {
+          padding: 0;
+        }
+      }
+
+      .v-header {
+        height: 100vh;
+        align-items: center;
+        color: antiquewhite;
+      }
+
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        max-width: 960px;
+        margin: auto;
+      }
+
+      .vedio-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .vedio-background video {
+        min-width: 100%;
+        min-height: 100%;
+      }
+
+      .vedio-overlay {
+        height: 100vh;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: #ffccd2;
+        z-index: 1;
+        opacity: 0.6;
+      }
+
+      .header-content {
+        position: relative;
+        height: 100vh;
+        top: 50%;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        color: #e4e8f0;
+        z-index: 2;
+      }
+
+      #navbar {
+        overflow: hidden;
+        background-color: #d82a4e;
+        z-index: 1;
+      }
+
+      #navbar a {
+        float: left;
+        font-size: 1.2rem;
+        font-weight: 700;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+      }
+
+      #navbar a:hover {
+        transition: 1.2s;
+        color: black;
+      }
+
+      .content {
+        padding: 16px;
+      }
+
+      .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+
+      .sticky + .content {
+        padding-top: 60px;
+      }
+
+      .topnav-right {
+        float: right;
+        animation: animate 2.2s infinite;
+      }
+
+      @keyframes animate {
+        from {
+          background-color: #f8485e;
+        }
+        to {
+          background-color: rgb(231, 231, 34);
+        }
+      }
+
+      .col-md-3 {
+        display: inline-block;
+        margin: 2rem 2.2rem;
+      }
+
+      .card-body {
+        width: 18rem;
+      }
+
+      .card-body h4 {
+        float: right;
+      }
+
+      .carousel-indicators .active {
+        background-color: blue;
+      }
+
+      body .carousel-control-prev-icon,
+      body .carousel-control-next-icon {
+        background-color: grey;
+      }
+
+      .carousel-control-prev,
+      .carousel-control-next {
+        top: 160rem;
+        bottom: auto;
+      }
+
+      body .no-padding {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .card:hover {
+        transition: 0.2s;
+        box-shadow: 3px 3px 5px #e8e1d9;
+      }
+
+      .card .card-title {
+        float: left;
+        text-transform: capitalize;
+      }
+
+      .card .card-title:hover {
+        transition: 2s;
+        text-decoration: underline;
+      }
+
+      .card .card-text {
+        float: right;
+        text-transform: capitalize;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="preloder">
+      <div class="loader"></div>
+    </div>
+
+    <header class="v-header container" id="home">
+      <div class="vedio-background">
+        <video class="videoTag" autoplay loop muted>
+          <source src='{% static "img/bg_vd1.mp4" %}' type="video/mp4" />
+        </video>
+      </div>
+
+      <div class="vedio-overlay"></div>
+
+      <div class="header-content">
+        <h3
+          style="
+            color: rgb(241, 239, 239);
+            font-weight: 800;
+            letter-spacing: 2rem;
+          "
+        >
+          WELCOME
+        </h3>
+        <h3 style="color: #f8485e">Achievers</h3>
+        <p style="padding: 2rem 2.2rem; font-size: 1.2rem">
+          Learn and Earn Quizzes
+        </p>
+      </div>
+    </header>
+
+    <nav>
+      <div id="navbar">
+        <a href="#home">Welcome</a>
+        <a href="#news">Our Story</a>
+        <a href="#story">Success Story</a>
+        <a href="#contact">Contact</a>
+        <div class="topnav-right">
+          <a href="/login_page">Login Now</a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="news">
+      <section class="container">
+        <h2
+          style="
+            color: #d82a4e;
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+          "
+        >
+          Why MockMeUp?
+        </h2>
+        <p>
+          A mock test portal serves several essential purposes, making it a
+          valuable resource for various individuals and institutions. Here's why
+          we need mock test portals. Including, <b>Exam Preparation:</b> Mock
+          test portals offer a wide range of practice tests for various exams,
+          allowing students to prepare effectively. They simulate the real exam
+          environment, helping test-takers get accustomed to the format and time
+          constraints. <b>Performance Assessment:</b> Mock tests enable students
+          to gauge their current knowledge and skill levels. By taking these
+          tests, individuals can identify their strengths and weaknesses,
+          helping them focus their study efforts where needed.
+          <b>Stress Reduction:</b> Facing an actual exam can be stressful. Mock
+          tests help reduce this anxiety by providing a chance to experience
+          exam conditions beforehand. Familiarity with the process can help
+          alleviate nervousness. <b>Time Management:</b> Many exams have strict
+          time limits. Mock tests help individuals practice time management,
+          ensuring they complete the test within the allocated time without
+          rushing or leaving questions unanswered.
+          <b>Feedback and Improvement:</b> Mock test portals often provide
+          detailed feedback, showing correct and incorrect answers. This
+          feedback is invaluable for learning from mistakes and improving
+          performance.
+        </p>
+      </section>
+    </div>
+
+    <div id="story">
+      <section class="container">
+        <h2
+          style="
+            color: #d82a4e;
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+          "
+        >
+          Aspirant Insights
+        </h2>
+
+        {% for feedback, range, nSlides in allset %}
+        <div class="carousel slide my-3" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="row">
+              {% for feed in feedback %}
+              <div class="col-lg-4 col-md-6">
+                <div class="categorie-item">
+                  <div
+                    class="ci-thumb set-bg"
+                    data-setbg='{% static "img/page-bg/feedback.png" %}'
+                  ></div>
+                  <div class="ci-text">
+                    <h6>{{ feed.feedback }}</h6>
+                    <p>{{ feed.feedback_reply }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and not forloop.last %}
+          </div>
+          <div class="carousel-item">{% endif%} {% endfor %}</div>
+        </div>
+
+        {% endfor %}
+      </section>
+    </div>
+
+    <div id="contact">
+      <section class="container">
+        <h2
+          style="
+            color: #d82a4e;
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+          "
+        >
+          Send us your Query.
+        </h2>
+        <div class="screen">
+          <div class="screen-header">
+            <div class="screen-header-left">
+              <div class="screen-header-button close"></div>
+              <div class="screen-header-button maximize"></div>
+              <div class="screen-header-button minimize"></div>
+            </div>
+            <div class="screen-header-right">
+              <div class="screen-header-ellipsis"></div>
+              <div class="screen-header-ellipsis"></div>
+              <div class="screen-header-ellipsis"></div>
+            </div>
+          </div>
+          <div class="screen-body">
+            <div class="screen-body-item left">
+              <div class="app-title">
+                <span>CONTACT</span>
+                <span>US</span>
+              </div>
+              <div class="app-contact">CONTACT INFO : +91 123-456-789</div>
+            </div>
+            <div class="screen-body-item">
+              <form
+                action="/contact_message"
+                method="POST"
+                enctype="multipart/form-data"
+                id="my-form"
+              >
+                {% csrf_token %}
+                <div class="app-form">
+                  <div class="app-form-group">
+                    <input
+                      class="app-form-control"
+                      placeholder="NAME"
+                      name="full_name"
+                    />
+                  </div>
+                  <div class="app-form-group">
+                    <input
+                      class="app-form-control"
+                      placeholder="EMAIL"
+                      name="full_email"
+                    />
+                  </div>
+                  <div class="app-form-group">
+                    <input
+                      class="app-form-control"
+                      placeholder="CONTACT NO"
+                      name="contact_no"
+                    />
+                  </div>
+                  <div class="app-form-group message">
+                    <input
+                      class="app-form-control"
+                      placeholder="SUBJECT"
+                      name="subject"
+                    />
+                  </div>
+                  <div class="app-form-group message">
+                    <input
+                      class="app-form-control"
+                      placeholder="MESSAGE"
+                      name="message"
+                    />
+                  </div>
+                  <div class="app-form-group buttons">
+                    <button class="app-form-button" type="submit">SEND</button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  {% if messages %} 
+                  {% for message in messages %} 
+                  {% if message.tags == 'error' %}
+                  <div class="alert alert-danger" style="margin-top: 10px">
+                    {{ message }}
+                  </div>
+                  {% endif %} 
+                  {% if message.tags == 'success' %}
+                  <div class="alert alert-success" style="margin-top: 10px">
+                    {{ message }}
+                  </div>
+                  {% endif %} 
+                  {% endfor %} 
+                  {% endif %}
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer-section">
+      <div class="footer-bottom text-center">
+        <p>© 2023 MockMeUp</p>
+      </div>
+    </footer>
+  </body>
+
+  <script src='{% static "js/scripts.js" %}'></script>
+  <script src='{% static "js/jquery-3.2.1.min.js" %}'></script>
+  <script src='{% static "js/bootstrap.min.js" %}'></script>
+  <script src='{% static "js/mixitup.min.js" %}'></script>
+  <script src='{% static "js/circle-progress.min.js" %}'></script>
+  <script src='{% static "js/owl.carousel.min.js" %}'></script>
+  <script src='{% static "js/main.js" %}'></script>
+</html>

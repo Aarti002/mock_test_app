@@ -16,11 +16,11 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from quiz_center import views
+from mock_test_app import views
 
-from quiz_center import Adminviews
+from mock_test_app import Adminviews
 
-from quiz_center import Participantviews,Staffviews
+from mock_test_app import Participantviews,Staffviews
 
 from quiz_app import settings
 
@@ -28,10 +28,13 @@ urlpatterns = [
     #Admin urls
     path('admin/', admin.site.urls),
     path('login_page', views.login_page,name="login_page"),
-    path('index', views.index,name="index"),
     path('staff_page', views.staff_page,name="staff_page"),
     path('dologin', views.dologin,name="dologin"),
     path('logout_page', views.logout_page,name="logout_page"),
+    path('forgot_password', views.forgot_password,name="forgot_password"),
+    path('reset_password', views.reset_password,name="reset_password"),
+    path('change_password/<str:token>/', views.change_password,name="change_password"),
+    path('contact_message', views.contact_message,name="contact_message"),
 
     #Staff urls
     path('view_feedback', Staffviews.view_feedback,name="view_feedback"),
@@ -45,6 +48,8 @@ urlpatterns = [
     path('save_question', Staffviews.save_question, name="save_question"),
     path('mock_test_list', Staffviews.mock_test_list, name="mock_test_list"),
     path('manage_participant', Staffviews.manage_participant, name="manage_participant"),
+    path('edit_competition_details/<str:type_id>', Staffviews.edit_competition_details, name="edit_competition_details"),
+    path('edit_competition_detail_save', Staffviews.edit_competition_detail_save, name="edit_competition_detail_save"),
 
     #Participants urls
     path('add_participant', Participantviews.add_participant,name="add_participant"),
@@ -57,8 +62,10 @@ urlpatterns = [
     path('selected_question/<str:exam_id>', Participantviews.selected_question, name="selected_question"),
     path('save_participant_changes', Participantviews.save_participant_changes, name="save_participant_changes"),
     path('available_mock_test', Participantviews.available_mock_test, name="available_mock_test"),
-   # path('', views.login_page,name="login_page"),
-
+    path('instruction_page/<str:exam_id>', Participantviews.instruction_page,name="instruction_page"),
+    path('question_paper/<str:competition_id>', Participantviews.question_paper,name="question_paper"),
+    path('collect_response', Participantviews.collect_response,name="collect_response"),
+    
 
     #HOME page
     path('', views.home_page,name="home_page"),
