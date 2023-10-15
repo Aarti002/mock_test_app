@@ -149,6 +149,7 @@ def question_paper(request,competition_id):
         context={}
         questions=QuestionBank.objects.filter(competition_id=competition_id)
         context["questions"]=questions
+        context["total_time"]=questions.count()*2*60
         return render(request, "Participant_templates/question_paper.html", context)
         
     except Exception as e:

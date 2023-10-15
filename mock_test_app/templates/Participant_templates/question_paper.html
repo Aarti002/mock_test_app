@@ -67,7 +67,7 @@
       }
     </style>
   </head>
-  <body>
+  <body onload="setTiming()">
     <div id="preloder">
       <div class="loader"></div>
     </div>
@@ -127,6 +127,7 @@
             Mock-Test
           </h2>
           <p>"Give it a try, and find your preparation level!"</p>
+          <p>This page will automatically close in <span id="countdown">5</span> seconds.</p>
         </div>
 
         <div class="contact-form-warp">
@@ -225,7 +226,26 @@
       </div>
     </section>
   </body>
-  <script></script>
+
+<script>
+
+  function setTiming(){ 
+    let seconds = {{total_time}}; // Set the initial countdown time in seconds
+        const countdownElement = document.getElementById("countdown");
+
+        function updateCountdown() {
+            countdownElement.textContent = seconds;
+            if (seconds === 0) {
+                window.close();
+            } else {
+                seconds--;
+                setTimeout(updateCountdown, 1000); // Update the countdown every 1 second (1000 milliseconds)
+            }
+        }
+
+        updateCountdown(); // Start the countdown
+}
+</script>
   <!--====== Javascripts & Jquery ======-->
   <script src='{% static "js/jquery-3.2.1.min.js" %}'></script>
   <script src='{% static "js/bootstrap.min.js" %}'></script>
