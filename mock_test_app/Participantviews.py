@@ -1,5 +1,4 @@
 import json
-import pyautogui as pag
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
